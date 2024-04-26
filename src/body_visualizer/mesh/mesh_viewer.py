@@ -85,13 +85,13 @@ class MeshViewer(object):
         if len(poses) < 1:
             for mid, mesh in enumerate(meshes):
                 if isinstance(mesh, trimesh.Trimesh):
-                    mesh = pyrender.Mesh.from_trimesh(mesh)
+                    mesh = pyrender.Mesh.from_trimesh(mesh, smooth = False)
                 self.scene.add(mesh, '%s-mesh-%2d'%(group_name, mid))
         else:
             for mid, iter_value in enumerate(zip(meshes, poses)):
                 mesh, pose = iter_value
                 if isinstance(mesh, trimesh.Trimesh):
-                    mesh = pyrender.Mesh.from_trimesh(mesh)
+                    mesh = pyrender.Mesh.from_trimesh(mesh, smooth = False)
                 self.scene.add(mesh, '%s-mesh-%2d'%(group_name, mid), pose)
 
     def set_static_meshes(self, meshes, poses=[]): self.set_meshes(meshes, group_name='static', poses=poses)
